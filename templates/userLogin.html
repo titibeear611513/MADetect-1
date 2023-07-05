@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MADetect Log In</title>
-    <link rel="stylesheet" href="userstyle.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userstyle.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
@@ -20,10 +20,10 @@
             <input type="email" placeholder="Enter Your Email">
             <p>Password</p>
             <input type="password" placeholder="Enter Your Password">
-            <a href="userForget.html"><p>forget password?</p></a>
+            <a href="forgetpsw"><p>forget password?</p></a>
             <input type="button" value="log in">
             <p id="dha">Don't Have Account?</p>
-            <a href="userSignup.html"><p id="signup">Sign Up</p></a>
+            <a href="signup"><p id="signup">Sign Up</p></a>
         </form>
     </div>
 </body>

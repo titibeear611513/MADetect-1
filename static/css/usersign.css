@@ -8,7 +8,7 @@ body::before{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image: url(userbackground.jpg);
+    background-image: url("../pic/userbackground.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -35,7 +35,7 @@ body::before{
     left: 50%;
     transform: translate(-50%,-50%);
     width: 550px;
-    height: 550px;
+    height: 600px;
     padding:40px 40px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 55px;
@@ -57,7 +57,7 @@ body::before{
     font-weight: bold;
     color: black;
     font-family: 'Chewy', cursive;
-    font-size: 40px;
+    font-size: 28px;
 }
 
 .contact-form input{
@@ -73,10 +73,11 @@ body::before{
     border-bottom: 2px solid black;
     background: transparent;
     outline: none;
-    height: 35px;
+    height: 32px;
     color: black;
-    font-size: 32px;
+    font-size: 24px;
 }
+
 .contact-form a {
     float:right;
     margin-bottom: 20px;
@@ -99,18 +100,13 @@ body::before{
     color: #fff;
 }
 
-#dha {
-    float:left;
-    color: gray;
-    margin-left: 120px;
-}
-
-
-
-#signup {
+#login {
     border-left: 0;
     color: #4CA5D8;
 }
 
-
-
+#asu {
+    float:left;
+    color: gray;
+    margin-left: 280px;
+}

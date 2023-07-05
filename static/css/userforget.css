@@ -8,7 +8,7 @@ body::before{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image: url(userbackground.jpg);
+    background-image: url("../pic/userbackground.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -57,7 +57,7 @@ body::before{
     font-weight: bold;
     color: black;
     font-family: 'Chewy', cursive;
-    font-size: 28px;
+    font-size: 48px;
 }
 
 .contact-form input{
@@ -67,15 +67,14 @@ body::before{
 }
 
 .contact-form input[type=name],
-.contact-form input[type=email],
-.contact-form input[type=password]{
+.contact-form input[type=email]{
     border: none;
     border-bottom: 2px solid black;
     background: transparent;
     outline: none;
-    height: 32px;
+    height: 40px;
     color: black;
-    font-size: 24px;
+    font-size: 36px;
 }
 
 .contact-form a {
@@ -86,11 +85,11 @@ body::before{
 
 .contact-form a p {
     color: gray;
-    font-size: 32px;
+    font-size: 64px;
 }
 
 .contact-form input[type=button]{
-    height: 60px;
+    height: 80px;
     border-radius: 16px;
     width: 100%;
     align-items: center;
@@ -100,13 +99,4 @@ body::before{
     color: #fff;
 }
 
-#login {
-    border-left: 0;
-    color: #4CA5D8;
-}
 
-#asu {
-    float:left;
-    color: gray;
-    margin-left: 280px;
-}
