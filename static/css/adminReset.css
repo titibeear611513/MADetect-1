@@ -8,7 +8,7 @@ body::before{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image: url("../pic/userbackground.jpg");
+    background-image: url(adminbackground.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -27,7 +27,6 @@ body::before{
     font-size: 32px;
     color: #fff;
     font-family: 'Chewy', cursive;
-    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
 }
 
 .contact-form {
@@ -95,7 +94,7 @@ body::before{
     width: 100%;
     align-items: center;
     border: none;
-    background-color: #4CA5D8;
+    background-color: #FFC0CB;
     font-size: 32px;
     color: #fff;
 }

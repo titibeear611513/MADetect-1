@@ -8,7 +8,7 @@ body::before{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image: url("../pic/userbackground.jpg");
+    background-image: url(adminbackground.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -21,13 +21,14 @@ body::before{
     position: absolute;
     top: -10px;
     left: 30px;
+    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
 }
 
 .topic h1{
     font-size: 32px;
     color: #fff;
     font-family: 'Chewy', cursive;
-    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
+    
 }
 
 .contact-form {
@@ -67,8 +68,8 @@ body::before{
     font-family: 'Chewy', cursive;
 }
 
-.contact-form input[type=npassword],
-.contact-form input[type=confirm]{
+.contact-form input[type=name],
+.contact-form input[type=email]{
     border: none;
     border-bottom: 2px solid black;
     background: transparent;
@@ -95,7 +96,8 @@ body::before{
     width: 100%;
     align-items: center;
     border: none;
-    background-color: #4CA5D8;
+    background-color: #FFC0CB;
     font-size: 32px;
     color: #fff;
 }
+
