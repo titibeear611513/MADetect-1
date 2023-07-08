@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Chewy', cursive;
+  }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+
+body::before{
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url(userbackground.jpg);
+  background-position: center center;
+  background-size: cover;
+  filter: blur(4px);
+}
+
+
+header{
+  left: 0;
+  top: 0;
+  margin-top: 0.5em;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  z-index: 200;
+}
+header .header_wrap{
+  width: 100%;
+}
+
+header .name{
+  margin-left: 0.25em;
+  font-size: 1.5em;
+  color: white;
+  filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
+  text-decoration: none;
+}
+
+header .header_inner {
+  height: 60px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.left_side{
+  width: 20%;
+  height: 100%;
+  margin-left: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(10px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.left_side i{
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.mid_side{
+  width: 60%;
+  height: 100%;
+  margin-left: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .header_inner .right_side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-left: auto;
+}
+
+header .header_inner .right_side .header_widgets {
+  margin-left: 1em;
+}
+
+.right_side a{
+  color: white;
+  margin-left: 2em;
+  font-size: 2em;
+  text-decoration: none;
+}
+
+.right_side{
+  color: aliceblue;
+  width: 35%;
+  height: 100%;
+  margin-right: 3em;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.middle{
+  top: 16em;
+  margin-left: 33em;
+  position: relative;
+  display: flex;
+}
+
+.middle .medetect{
+  font-size: 5em;
+  color: white;
+  letter-spacing: 5px;
+  filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7))
+}
+
+.medical{
+  top: 15em;
+  margin-left: 53em;
+  position: relative;
+  display: flex;
+}
+
+.medical h3{
+  font-size: 3em;
+}
+
+.ads{
+  top: 16em;
+  margin-left: 53em;
+  position: relative;
+  display: flex;
+  color: black;
+}
+
+.ads h4{
+  font-size: 1.75em;
+}
