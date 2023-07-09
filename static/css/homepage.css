@@ -20,7 +20,7 @@ body::before{
   position: fixed;
   width: 100%;
   height: 100%;
-  background-image: url(userbackground.jpg);
+  background-image: url("../pic/userbackground.jpg");
   background-position: center center;
   background-size: cover;
   filter: blur(4px);
