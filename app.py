@@ -46,16 +46,18 @@ def login_function():
 		return "登入失敗"
 	#登入成功，在session紀錄會員資訊，導向到內部主頁
 	session["user_name"]=result["user_name"]
-	print(session["user_name"])
 	return redirect("/inner_homepage")
 
 #內部主頁頁面
 @app.route('/inner_homepage')
 def inner_homepage():
-	if session["user_name"] == None:
-		return redirect("/")	
+	# 確認session裡是否已有資料(在/login_function中或登入失敗就不會將資料傳入session)
+
+	if "user_name" in session:
+		return render_template("inner_homepage.html")	
 	else:
-		return render_template("inner_homepage.html")
+		return redirect("/")
+		
 
 #註冊頁面
 @app.route('/signup')
