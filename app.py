@@ -91,16 +91,62 @@ def signup_function():
 	})
 	return render_template('userLogin.html')
 
-#忘記密碼
+#忘記密碼頁面
 @app.route('/forgetpsw')
 def forgetpsw():
 	return render_template('userForget.html')
 
-#重設密碼
+#忘記密碼功能
+@app.route('/forgetpsw_function', methods=['POST'])
+def forgetpsw_function():
+
+	# 接收前端資料
+	user_name=request.values.get("user_name")
+	user_email=request.values.get("user_email")
+
+	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
+	collection = db.user
+
+	#檢查是否有user名字及郵件
+	result=collection.find_one({
+		"$and":[
+			{"user_name":user_name},
+			{"user_email":user_email}	
+		]
+	})
+	if result==None:
+		return "帳號不存在"
+	else:
+		session["user_email"]=result["user_email"]
+		return redirect("/reset")
+
+#重設密碼頁面
 @app.route('/reset')
 def resetpsw():
 	return render_template('resetPassword.html')
 
-#後端flask設定
+#重設密碼功能
+@app.route('/reset_function', methods=['POST'])
+def reset_function():
+
+	# 接收前端資料
+	user_password=request.values.get("user_password")
+
+	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
+	collection = db.user
+
+	#確認密碼還沒做QQ
+
+	#更新user_password
+	collection.update_one({
+    	"user_email":session["user_email"]
+	},{
+    "$set":{
+        "user_password":user_password
+    	}
+	})
+	return render_template('userLogin.html')
+
+#後端flask設定s
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port='5000',debug=True)
