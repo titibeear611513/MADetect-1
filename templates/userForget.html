@@ -15,15 +15,16 @@
     </div>
     <div class="contact-form">
         <h1>Forget Password</h1>
-        <form action="">
+        <form action="/forgetpsw_function"  method="post">
             <p>Name</p>
-            <input type="name" placeholder="Enter Your Name">
+            <input type="name" placeholder="Enter Your Name" name="user_name">
             <p>Email</p>
-            <input type="email" placeholder="Enter Your Email">
+            <input type="email" placeholder="Enter Your Email" name="user_email">
             <br>
             <br>
-            <input type="button" value="Next" onclick="location.href='reset'">
-            <input type="button" value="< Back" style="background-color:#FFC0CB" onclick="history.back()">
+            <!-- <input type="button" value="Next"> -->
+            <button value="Next">Next</button>
+            <input type="button" value=" Back" style="background-color:#FFC0CB" onclick="history.back()">
         </form>
     </div>
 </body>
