@@ -89,7 +89,10 @@ body::before{
     font-size: 32px;
 }
 
-.contact-form input[type=button]{
+.contact-form button{
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: 'Chewy', cursive;
     height: 60px;
     border-radius: 16px;
     width: 100%;
