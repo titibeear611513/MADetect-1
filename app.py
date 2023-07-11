@@ -147,6 +147,21 @@ def reset_function():
 	})
 	return render_template('userLogin.html')
 
+#管理員登入
+@app.route('/adminlogin')
+def adminlogin_page():
+	return render_template('adminLogin.html')
+
+#管理員忘記密碼
+@app.route('/adminforgetpsw')
+def adminforgetpsw_page():
+	return render_template('adminForget.html')
+
+#管理員重設密碼
+@app.route('/adminresetpsw')
+def adminresetpsw_pages():
+	return render_template('adminReset.html')
+
 #後端flask設定s
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port='5000',debug=True)
