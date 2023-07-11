@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf8">
         <title>MADetect home page</title>
-        <link rel="stylesheet" href="homepage.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
@@ -14,14 +14,14 @@
                 <div class="header_inner mcontainer">
                     <div class="left_side">
                         <div class="name">
-                            <a class="name" href="homepage.html">MADetect</a>
+                            <a class="name" href="">MADetect</a>
                         </div>
                     </div>
                     <div class="mid_side"></div>
                     <div class="right_side">
                         <div class="header_widgets">
-                            <a class="log_in" href="userLogin.html">log in</a> 
-                            <a class="sign_up" href="userSignup.html">sign up</a> 
+                            <a href="/login" class="log_in">Log in</a> 
+                            <a href="signup" class="sign_up">Sign Up</a>
                         </div>
                     </div>
                 </div>

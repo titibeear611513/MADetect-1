@@ -15,19 +15,20 @@
     </div>
     <div class="contact-form">
         <h1>Sign Up</h1>
-        <form action="">
+
+        <form action="/signup_function" method="post">
             <p>Name</p>
-            <input type="name" placeholder="Enter Your Name">
+            <input type="name" placeholder="Enter Your Name" name="user_name">
             <p>Email</p>
-            <input type="email" placeholder="Enter Your Email">
+            <input type="email" placeholder="Enter Your Email" name="user_email">
             <p>Password</p>
-            <input type="password" placeholder="Enter Your Password">
+            <input type="password" placeholder="Enter Your Password" name="user_password">
             <p>Confirm Password</p>
-            <input type="password" placeholder="Enter Your Password again">
-            <input type="button" value="sign up">
-            <p id="asu">Already Sign up?</p>
-            <a href="login"><p id="login">Log in</p></a>
+            <input type="password" placeholder="Enter Your Password again" name="user_password_confirm">
+            <button>Sign up</button>
         </form>
+        <p id="asu">Already Sign up?</p>
+        <a href="login"><p id="login">Log in</p></a> 
     </div>
 </body>
 </html>
