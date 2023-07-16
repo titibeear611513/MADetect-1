@@ -8,7 +8,47 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
-    <script src="{{ url_for('static', filename='/js/jquery-3.4.1.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#email').blur(function() {
+                var email = $(this).val();
+                $.ajax({
+                    url: '/check_email',
+                    method: 'POST',
+                    data: {email: email},
+                    success: function(response) {
+                        if (response.exists) {
+                            $('#email-error').text('Email already exists');
+                            $('#signup-form button').prop('disabled', true); // 禁用提交按鈕
+                        } else {
+                            $('#email-error').text('');
+                            $('#signup-form button').prop('disabled', false); // 啟用提交按鈕
+                        }
+                    }
+                });
+            });
+    
+            $('#signup-form').submit(function(event) {
+                event.preventDefault(); // 阻止表單提交
+    
+                var password = $('#password').val();
+                var confirmPassword = $('#password-confirm').val();
+                // if (password.length<8) {
+                //     $('#password-error').text('Passwords need 8 characters');
+                //     return;
+                // 密碼格式確認(還沒弄)}
+                if (password !== confirmPassword) {
+                    $('#confirm_password-error').text('Passwords do not match');
+                    return;
+                }
+
+    
+                // 密碼驗證通過，提交表單
+                this.submit();
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="topic">
@@ -17,85 +57,22 @@
     <div class="contact-form">
         <h1>Sign Up</h1>
 
-        <form action="/signup_function" method="post" id="form">
+        <form id="signup-form" action="/signup_function" method="post">
             <p>Name</p>
-            <input type="name" placeholder="Enter Your Name" name="user_name">
+            <input type="name" required="required" placeholder="Enter Your Name" name="user_name">
             <p>Email</p>
-            <input type="email" placeholder="Enter Your Email" name="user_email">
+            <input type="email" required="required" placeholder="Enter Your Email" name="user_email" id="email">
+            <p id="email-error" style="color: red;"></p>
             <p>Password</p>
-            <input type="password" placeholder="Enter Your Password" name="user_password">
+            <input type="password" required="required" placeholder="Enter Your Password" name="user_password" id="password">
+            <!-- <p id="password-error" style="color: red;"></p> -->
             <p>Confirm Password</p>
-            <input type="password" placeholder="Enter Your Password again" name="user_password_confirm">
-            <button id="submit">Sign up</button>
+            <input type="password" required="required" placeholder="Enter Your Password again" name="user_password_confirm" id="password-confirm">
+            <p id="confirm_password-error" style="color: red;"></p>
+            <button>Sign up</button>
         </form>
         <p id="asu">Already Sign up?</p>
         <a href="/login"><p id="login">Log in</p></a>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                // 處理表單點擊事件
-                var $form = $('#submit');
-                $form.click(function() {
-                    submit();
-                });
-
-                function submit() {
-                    var name = $('#user_name').val();
-                    var email = $('#user_email').val();
-                    var password = $('#user_password').val();
-
-                    var email_rule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-                    var password_rule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-                    if (name=="") {
-                        alert("名字不能為空！")
-                    }
-                    else if (!email_rule.test(email)) {
-                        alert("Email格式不符！");
-                    }
-                    else if(!password_rule.test(password)) {
-                        alert("密碼格式不符，長度至少8，且至少包含一個數字和英文字母！");
-                    }
-                    else {
-                        // 將資料組成JSON格式
-                        var data_object = {
-                            "name": name,
-                            "email": email,
-                            "password": password
-                        };
-
-                        // 將JSON格式轉換成字串
-                        var data_string = JSON.stringify(data_object);
-
-                        // 發出POST的AJAX請求
-                        $.ajax({
-                                type: "POST",
-                                url: "/signup_function",
-                                data: data_string,
-                                crossDomain: true,
-                                cache: false,
-                                dataType: 'json',
-                                timeout: 5000,
-                                success: function (response) {
-                                    $('#flashMessage').html(response.message);
-                                    $('#flashMessage').show();
-                                    if(response.status == 200){
-                                        updateSQLTable(response.response);
-                                    }
-                                },
-                                error: function () {
-                                    alert("無法連線到伺服器！");
-                                }
-                        });
-
-                        var currentURL = window.location.href;  //獲取當前網頁URL
-                        setTimeout(function() {  window.location.href = currentURL + "/login";},3000); // 3秒後跳轉至登入頁面
-                    }
-                }
-
-                
-            });
-        </script> 
     </div>
 </body>
 </html>

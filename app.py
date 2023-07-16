@@ -1,6 +1,6 @@
 # 載入flask套件
 from flask import Flask,render_template,request,redirect,session
-
+from flask import jsonify
 # 載入 pymongo 套件
 import pymongo
 
@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key="secret"
 
 # 操作 madetect 資料庫
-db = client.madetect   
+db = client.madetect
 
 #首頁頁面
 @app.route('/')
@@ -26,29 +26,33 @@ def login_page():
 #登入功能
 @app.route('/login_function', methods=['POST'])
 def login_function():
+    user_email = request.form.get('user_email')
+    user_password = request.form.get('user_password')
 
-	# 接收前端資料
-	user_email=request.values.get("user_email")
-	user_password=request.values.get("user_password")
+    # 根據接受到的資料跟資料庫互動，操作 madetect 資料庫的 user 集合
+    collection = db.user
 
-	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
-	collection = db.user
+    # 檢查帳號密碼是否正確
+    result = collection.find_one({
+        "user_email": user_email,
+        "user_password": user_password
+    })
 
 	# 檢查帳號密碼是否正確
-	result=collection.find_one({
+    result=collection.find_one({
 		"$and":[
 			{"user_email":user_email},
 			{"user_password":user_password}
 		]
 	})
-	#登入失敗
-	if result==None:
-		return redirect('/login')
-	
-	#登入成功，在session紀錄會員資訊，導向到內部主頁
-	session["user_name"] = result["user_name"]
-	session['_id'] = result['_id']
-	return redirect("/inner_homepage")
+    
+    if result is not None:
+        # 登入成功
+        session["user_name"] = result["user_name"]
+        return jsonify({'success': True})
+    else:
+        # 登入失敗
+        return jsonify({'success': False})
 
 #內部主頁頁面
 @app.route('/inner_homepage')
@@ -79,58 +83,63 @@ def signup_function():
 	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
 	collection = db.user
 
-	#檢查是否有重複帳號
-	#---------------還沒做QQ
+#插入資料進資料庫
+	collection.insert_one({
+		"user_name":user_name,
+		"user_email":user_email,
+		"user_password":user_password
+	})
+	return render_template('userLogin.html')
 
-	#檢查再次確認密碼
-	#---------------還沒做QQ
+# 註冊功能判定帳號是否重複
+@app.route('/check_email', methods=['POST'])
+def check_email():
+    user_email = request.form.get('email')
+    
+    # 根據接收到的資料與資料庫互動，操作 madetect 資料庫的 user 集合
+    collection = db.user
+    
+    # 檢查是否有重複的 email
+    result = collection.find_one({"user_email": user_email})
+    
+    if result is not None:
+        response = {"exists": True}
+    else:
+        response = {"exists": False}
+    
+    return jsonify(response)
 
-	if len(user_name)==0:
-		return redirect('/signup')
-	
-	elif len(user_email)==0:
-		return redirect('/signup')
-	
-	elif len(user_password)==0:
-		return redirect('/signup')
-	
-	#插入資料進資料庫
-	else:
-		collection.insert_one({
-			"user_name":user_name,
-			"user_email":user_email,
-			"user_password":user_password
-		})
-		return user_name+user_email+user_password
 
-#忘記密碼頁面
+# 忘記密碼頁面
 @app.route('/forgetpsw')
 def forgetpsw():
 	return render_template('userForget.html')
 
-#忘記密碼功能
+# 忘記密碼功能
 @app.route('/forgetpsw_function', methods=['POST'])
 def forgetpsw_function():
+    # 接收前端資料
+    user_name = request.values.get("user_name")
+    user_email = request.values.get("user_email")
 
-	# 接收前端資料
-	user_name=request.values.get("user_name")
-	user_email=request.values.get("user_email")
+    # 根據接受到的資料跟資料庫互動，操作 madetect 資料庫的 user 集合
+    collection = db.user
 
-	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
-	collection = db.user
+    # 檢查是否有 user 名字及郵件
+    result = collection.find_one({
+        "$and": [
+            {"user_name": user_name},
+            {"user_email": user_email}
+        ]
+    })
 
-	#檢查是否有user名字及郵件
-	result=collection.find_one({
-		"$and":[
-			{"user_name":user_name},
-			{"user_email":user_email}	
-		]
-	})
-	if result==None:
-		return "帳號不存在"
-	else:
-		session["user_email"]=result["user_email"]
-		return redirect("/reset")
+    if result is not None:
+        session["user_email"] = result["user_email"]
+        response = {"exists": True}
+    else:
+        response = {"exists": False}
+
+    return jsonify(response)
 
 #重設密碼頁面
 @app.route('/reset')
@@ -146,8 +155,6 @@ def reset_function():
 
 	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
 	collection = db.user
-
-	#確認密碼還沒做QQ
 
 	#更新user_password
 	collection.update_one({

@@ -8,6 +8,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#login-form').submit(function(event) {
+                event.preventDefault(); // 阻止表單提交
+    
+                var email = $('#email').val();
+                var password = $('#password').val();
+    
+                $.ajax({
+                    url: '/login_function',
+                    method: 'POST',
+                    data: {user_email: email, user_password: password},
+                    success: function(response) {
+                        if (response.success) {
+                            // 登入成功，導向內部主頁
+                            $('#login-error').text('');// 清除錯誤訊息
+                            window.location.href = "/inner_homepage";
+                        } else {
+                            // 登入失敗，顯示錯誤訊息
+                            $('#login-error').text('Invalid email or password');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="topic">
@@ -15,13 +42,15 @@
     </div>
     <div class="contact-form">
         <h1>Login</h1>
-        <form action="/login_function"  method="POST">
+        <form action="/login_function"  method="post">
             <p>Email</p>
-            <input type="email" placeholder="Enter Your Email" name="user_email">
+            <!-- 用 required 屬性避免空值 -->
+            <input type="email" placeholder="Enter Your Email" required="required" name="user_email" id="email">
             <p>Password</p>
-            <input type="password" placeholder="Enter Your Password"  name="user_password">
+            <input type="password" placeholder="Enter Your Password" required="required" name="user_password" id="password">
             <a href="forgetpsw"><p>forget password?</p></a>
-            <button>Log in</button>
+            <p id="login-error" style="color: red;"></p>
+            <button type="submit">Log in</button>
             <p id="dha">Don't Have Account?</p>
             
         </form>
