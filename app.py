@@ -43,9 +43,11 @@ def login_function():
 	})
 	#登入失敗
 	if result==None:
-		return "登入失敗"
+		return redirect('/login')
+	
 	#登入成功，在session紀錄會員資訊，導向到內部主頁
-	session["user_name"]=result["user_name"]
+	session["user_name"] = result["user_name"]
+	session['_id'] = result['_id']
 	return redirect("/inner_homepage")
 
 #內部主頁頁面
@@ -83,13 +85,23 @@ def signup_function():
 	#檢查再次確認密碼
 	#---------------還沒做QQ
 
+	if len(user_name)==0:
+		return redirect('/signup')
+	
+	elif len(user_email)==0:
+		return redirect('/signup')
+	
+	elif len(user_password)==0:
+		return redirect('/signup')
+	
 	#插入資料進資料庫
-	collection.insert_one({
-		"user_name":user_name,
-		"user_email":user_email,
-		"user_password":user_password
-	})
-	return render_template('userLogin.html')
+	else:
+		collection.insert_one({
+			"user_name":user_name,
+			"user_email":user_email,
+			"user_password":user_password
+		})
+		return user_name+user_email+user_password
 
 #忘記密碼頁面
 @app.route('/forgetpsw')
