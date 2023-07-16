@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Chewy', cursive;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.l_container{
+    display: flex;
+}
+
+.side{
+    min-width: 300px;
+	height: 200px;
+	height: 100%;
+	min-height: 100vh;
+    background-color: #89BABA;
+    border-right: 1px solid #e1e1e1;
+}
+
+.content {
+	width: 100%;
+	display: flex;
+	padding: 20px 0;
+	align-items: center;
+	flex-direction: column;
+}
+
+.side .header {
+	width: 100%;
+	height: 7.5vh;
+	display: flex;
+	align-items: center;
+	padding: 0 65px;
+}
+
+.side .header .name{
+    font-size: 36px;
+    color: white;
+    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
+    text-decoration: none;
+}
+
+.side .l_middle{
+    max-width: 300px;
+    height: 80vh;
+}
+
+.side .l_middle .title{
+	padding: 10px 30px;
+	display: flex;
+	transition: 0.2s box-shadow;
+    align-items: center;
+}
+
+.side .l_middle .text{
+    min-width: 180px;
+    padding: 0 10px;
+    font-size: 22px;
+}
+
+.side .l_middle .icon{
+    padding: 0 5px;
+}
+.side .title:hover {
+	box-shadow: 0 0 15px 0 rgba(100, 100, 100, 0.1);
+	border-right: 5px solid #2894FF;
+}
+
+.side .l_report{
+    padding: 5% 30%;
+    width: 100%;
+    height: 5vh;
+    font-size: 26px;
+    font-weight: bold;
+    display: flex;
+}
+
+.side .l_report a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.side .l_bottom{
+    width: 100%;
+    height: 7.5vh;
+    display: flex;
+}
+
+.side .l_bottom .l_bottom_l{
+    width: 50%;
+    padding: 5% 10%;
+    font-size: 28px;
+    color: white;
+    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
+}
+.side .l_bottom .l_bottom_l a{
+    text-decoration: none;
+    color: white;
+}
+
+.side .l_bottom .l_bottom_l a:hover{
+    color: white;
+}
+
+.side .l_bottom .l_bottom_r{
+    width: 50%;
+    padding: 5% 10%;
+    font-size: 26px;
+    color: #0066FF;
+    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
+}
+
+.side .l_bottom .l_bottom_r a{
+    text-decoration: none;
+}
+.side .l_bottom .l_bottom_r a:link{
+    color: #0066FF;
+}
+.side .l_bottom .l_bottom_r a:visited{
+    color: #2894FF;
+}
+.side .l_bottom .l_bottom_r a:hover{
+    color: #00AEAE;
+}
+.side .l_bottom .l_bottom_r a:active{
+    color: #0066FF;
+}
+
+.r_side{
+    width: 100%;
+    height: 100vh;
+    background-color: #D9E7E5;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+
+.r_side .r_container {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid #89BABA;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 97%;
+    background-color: white;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.r_side .title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    background-color: #89BABA;
+    color: white;
+    padding: 10px;
+}
+
+.input-block {
+    background-color: white;
+    padding: 10px;
+    margin: -2px;
+}
+
+.editable-content {
+    width: 100%;
+    padding-left: 5px;
+    border: none;
+    font-size: 30px;
+    outline: none;
+    word-wrap: break-word;
+    min-height: 120px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    max-width: 1600px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.custom-button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+.new-container {
+    margin-top: 0.5em;
+}
+
+.black-line {
+    height: 4px;
+    background-color: #4947A5;
+    margin-top: 20px;
+    width: 96%;
+    margin-left: 30px;
+}
+
+.pink-bg .title {
+    background-color: #FF859A;
+}
+
+.pink-bg .container {
+    border-color: #FF859A;
+}
+
+.Lgreen-bg .title {
+    background-color: #BBCE6E;
+}
+
+.Lgreen-bg .container {
+    border-color: #BBCE6E;
+}
+
+.Dgreen-bg .title {
+    background-color: #89BABA;
+}
+
+.Dgreen-bg .container {
+    border-color: #89BABA;
+}
+
+.r_line {
+    height: 4px;
+    background-color: #89BABA;
+    margin-top: 20px;
+    width: 97%;
+    margin-left: 20px;
+}
+
+.modal{
+    margin-top: 14%;
+}
+.modal-body form .account{
+    margin: 10px 5%;
+    width: 90%;
+    border-radius: 2em;
+}
+.modal-body form .password{
+    margin: 20px 5%;
+    width: 90%;
+    border-radius: 2em;
+}
+.modal-body form{
+    justify-content: center;
+}
+
+.modal-body form .report{
+    margin: 20px 5%;
+    width: 90%;
+    border-radius: 2em;
+}
+
+.modal-body form .btn{
+    font-weight: bold;
+}
