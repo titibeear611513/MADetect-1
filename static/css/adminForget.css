@@ -19,9 +19,7 @@ body::before{
 
 .topic {
     position: absolute;
-    top: -10px;
     left: 30px;
-    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
 }
 
 .topic a{

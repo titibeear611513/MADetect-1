@@ -26,7 +26,6 @@ body::before{
 
 .topic {
     position: absolute;
-    top: -10px;
     left: 30px;
 }
 
