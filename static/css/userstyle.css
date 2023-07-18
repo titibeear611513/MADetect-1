@@ -23,9 +23,10 @@ body::before{
     left: 30px;
 }
 
-.topic h1{
+.topic a{
     font-size: 32px;
     color: #fff;
+    text-decoration: none;
     font-family: 'Chewy', cursive;
 }
 
