@@ -1,5 +1,5 @@
 # 載入flask套件
-from flask import Flask,render_template,request,redirect,session
+from flask import Flask,render_template,request,redirect,session,url_for
 from flask import jsonify
 # 載入 pymongo 套件
 import pymongo
@@ -15,12 +15,23 @@ db = client.madetect
 
 #首頁頁面
 @app.route('/')
-def home():
+def homepage():
     return render_template('homepage.html')
+
+#主功用頁面
+@app.route('/home')
+def home():
+    if 'user_name' in session:
+        return render_template('home.html')
+    else:
+        return redirect(url_for('login'))
 
 #登入頁面
 @app.route('/login')
 def login_page():
+    if 'user_name' in session:
+          return redirect(url_for('home'))
+    
     return render_template('userLogin.html')
 
 #登入功能
@@ -37,14 +48,16 @@ def login_function():
         "user_email": user_email,
         "user_password": user_password
     })
-
+    
     if result is not None:
         # 登入成功
         session["user_name"] = result["user_name"]
-        return jsonify({'success': True})
+        response = {'success': True}
     else:
         # 登入失敗
-        return jsonify({'success': False})
+        response = {'success': False}
+    
+    return jsonify(response)
 
 #內部主頁頁面
 @app.route('/inner_homepage')
@@ -60,8 +73,10 @@ def inner_homepage():
 #註冊頁面
 @app.route('/signup')
 def signup_page():
-
-	return render_template('userSignup.html')
+    if 'user_name' in session:
+        return redirect(url_for('home'))
+	
+    return render_template('userSignup.html')
 
 #註冊功能
 @app.route('/signup_function', methods=['POST'])
@@ -75,13 +90,20 @@ def signup_function():
 	# 根據接受到的資料跟資料庫互動，操作 madetect資料庫 的 user集合
 	collection = db.user
 
-	#插入資料進資料庫
+#插入資料進資料庫
 	collection.insert_one({
 		"user_name":user_name,
 		"user_email":user_email,
 		"user_password":user_password
 	})
 	return render_template('userLogin.html')
+
+# 登出
+@app.route('/signout')
+def signout():
+    # 移除session中會員資訊
+    del session['user_name']
+    return redirect("/")
 
 # 註冊功能判定帳號是否重複
 @app.route('/check_email', methods=['POST'])
