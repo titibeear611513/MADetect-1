@@ -24,11 +24,12 @@ body::before{
     filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
 }
 
-.topic h1{
+.topic a{
     font-size: 32px;
     color: #fff;
+    text-decoration: none;
     font-family: 'Chewy', cursive;
-    
+    filter: drop-shadow(1px 1px 0.5px rgba(105, 105, 105, 0.7));
 }
 
 .contact-form {
