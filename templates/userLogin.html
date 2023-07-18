@@ -25,7 +25,7 @@
                         if (response.success) {
                             // 登入成功，導向內部主頁
                             $('#login-error').text('');// 清除錯誤訊息
-                            window.location.href = "/inner_homepage";
+                            window.location.href = "/home";
                         } else {
                             // 登入失敗，顯示錯誤訊息
                             $('#login-error').text('Invalid email or password');
@@ -42,7 +42,7 @@
     </div>
     <div class="contact-form">
         <h1>Login</h1>
-        <form action="/login_function"  method="post">
+        <form id="login-form" action="/login_function"  method="post">
             <p>Email</p>
             <!-- 用 required 屬性避免空值 -->
             <input type="email" placeholder="Enter Your Email" required="required" name="user_email" id="email">
