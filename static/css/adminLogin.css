@@ -42,11 +42,16 @@ body::before{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 550px;
-    height: 550px;
+    width: 600px;
+    height: 650px;
     padding:40px 40px;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 55px;
+    /* 我加了才不會跑版QQ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-form h1{
@@ -95,7 +100,7 @@ body::before{
     font-size: 32px;
 }
 
-.contact-form input[type=button]{
+.contact-form button{
     height: 60px;
     border-radius: 16px;
     width: 100%;
