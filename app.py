@@ -114,41 +114,6 @@ def check_email():
     
     return jsonify(response)
 
-# 登入頁面
-@app.route('/login')
-def login_page():
-    if 'user_name' in session:
-          return redirect(url_for('home'))
-    
-    return render_template('userLogin.html')
-
-# 登入功能
-@app.route('/login_function', methods=['POST'])
-def login_function():
-    user_email = request.form.get('user_email')
-    user_password = request.form.get('user_password')
-
-    # 根據接受到的資料跟資料庫互動，操作 madetect 資料庫的 user 集合
-    collection = db.user
-
-    # 檢查帳號密碼是否正確
-    result = collection.find_one({
-        "user_email": user_email,
-        "user_password": user_password
-    })
-    
-    if result is not None:
-        # 登入成功
-        session["user_name"] = result["user_name"]
-        session["user_email"] =result["user_email"]
-        response = {'success': True}
-    else:
-        # 登入失敗
-        response = {'success': False}
-    
-    return jsonify(response)
-
-
 # 忘記密碼頁面
 @app.route('/forgetpsw')
 def forgetpsw():
