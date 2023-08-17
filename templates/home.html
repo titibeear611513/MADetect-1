@@ -30,57 +30,90 @@
                         <a class="name" href="">MADetect</a>
                     </div>
                 </div>
+                <div class="l_create">
+                    <div class="l_create_l">
+                        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#create" ><i class="fa-regular fa-square-plus"></i></a>
+                    </div>
+                    <div class="l_create_r">
+                        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#question" ><i class="fa-solid fa-circle-question"></i></a>
+                    </div>
+                </div>
                 <div class="l_middle">
                     <div class="title">
-                        <div class="text">青春痘</div>
+                        <div class="text">減肥</div>
                         <div class="icon">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
                         </div>
                         <div class="icon">
-                            <i class="fa-solid fa-trash-can"></i> 
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
                         </div>   
                     </div>
                     <div class="title">
-                        <div class="text">青春痘</div>
+                        <div class="text">痘疤</div>
                         <div class="icon">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
                         </div>
                         <div class="icon">
-                            <i class="fa-solid fa-trash-can"></i> 
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
                         </div>   
-                    </div>
-                    <div class="title">
-                        <div class="text">青春痘</div>
+                    </div>                    <div class="title">
+                        <div class="text">雷射治療</div>
                         <div class="icon">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
                         </div>
                         <div class="icon">
-                            <i class="fa-solid fa-trash-can"></i> 
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
                         </div>   
-                    </div>
-                    <div class="title">
-                        <div class="text">青春痘</div>
+                    </div>                    <div class="title">
+                        <div class="text">臉部保養</div>
                         <div class="icon">
-                            <i class="fa-solid fa-pen-to-square"></i>
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
                         </div>
                         <div class="icon">
-                            <i class="fa-solid fa-trash-can"></i> 
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
                         </div>   
-                    </div>
-                    
+                    </div>                    <div class="title">
+                        <div class="text">皮膚炎</div>
+                        <div class="icon">
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
+                        </div>   
+                    </div>                    <div class="title">
+                        <div class="text">牙周病</div>
+                        <div class="icon">
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
+                        </div>   
+                    </div>                    <div class="title">
+                        <div class="text">豐胸</div>
+                        <div class="icon">
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#edit" ><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                        <div class="icon">
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#delete" ><i class="fa-solid fa-trash-can"></i></a> 
+                        </div>   
+                    </div>                    
                 </div>
+                <!--問題回報-->
                 <div class="l_report">
                     <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#report" >問題回報</a>
                 </div>
                 <div class="l_bottom">
+                    <!--帳號設定-->
                     <div class="l_bottom_l">
-                        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#account" class="l_word">Account</a>
+                        <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#account" class="l_word">Setting</a>
                     </div>
+                    <!--登出-->
                     <div class="l_bottom_r">
                         <a class="r_word" href="/signout">Log Out</a>
                     </div>
                 </div>
             </div>
+            <!--主功能區-->
             <div class="r_side" >
                 <div class="r_container">
                     <div class="title">請輸入廣告詞</div>
@@ -88,66 +121,250 @@
                       <div id="inputAD" class="editable-content" contenteditable="true" name="input_ad"></div>
                     </div>
                     <div class="button-container">
-                      <button class="custom-button" onclick="addNewElements()"><img src="/static/pic/send4.png" width="24px" height="24px"></button>
+                      <button title='送出' id="inputADbutton" class="custom-button"onclick="madetect()"><img src="/static/pic/send4.png" width="24px" height="24px"></button>
                     </div>
             </div>
         </div>
 
-                <!--跳出視窗內容 Account -->
+        <!--跳出視窗內容 Create -->
 
-                <div class="modal fade" id="account" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-        
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="accountModalLabel">帳戶設定</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal fade" id="create" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+    
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="accountModalLabel">新增專案</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+    
+                    <div class="modal-body">
+                        <div class="create_title">
+                            <p>請輸入要新增的專案名稱</p>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message-text"></textarea>
                             </div>
-        
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <input type="email" class="account form-control" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="password form-control" placeholder="Password">
-                                    </div>
-                                    <div class="from-group text-center">
-                                        <button type="button" class="btn btn-info ">儲存</button>
-                                    </div>
-                                </form>
+                            <div class="from-group text-center">
+                                <button type="button" class="btn btn-info " data-bs-dismiss="modal" onclick="addProject() ">新增</button>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--跳出視窗內容 Question -->
+        <div class="modal fade" id="question" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+    
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="accountModalLabel">使用說明</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+    
+                    <div class="modal-body">
+                        <div class="text">
+                            <p>按下 <i class="fa-regular fa-square-plus"></i> 可新增專案<br>按下 <i class="fa-solid fa-pen-to-square"></i> 可修改專案名稱</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!--跳出視窗內容 Report -->
-                <div class="modal fade" id="report" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-        
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="accountModalLabel">問題回報</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-        
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <textarea class="form-control" id="message-text"></textarea>
-                                    </div>
-                                    <div class="from-group text-center">
-                                        <button type="button" class="btn btn-info ">回報</button>
-                                    </div>
-                                </form>
-                            </div>
+        <!--跳出視窗內容 Edit -->
+        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+    
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="accountModalLabel">變更專案名稱</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+    
+                    <div class="modal-body">
+                        <div class="create_title">
+                            <p>請輸入要變更的專案名稱</p>
                         </div>
+                        <form>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                            <div class="from-group text-center">
+                                <button type="button" class="btn btn-info " data-bs-dismiss="modal">變更</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!--跳出視窗內容 Account -->
+
+        <div class="modal fade" id="account" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="accountModalLabel">帳戶設定</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="account form-control" placeholder="Email"  disabled>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="password form-control" placeholder="Password" disabled>
+                            </div>
+                            <div class="from-group text-center">
+                                <button type="button" class="btn btn-info " data-bs-toggle="modal" data-bs-target="#changepassword" >變更密碼</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--跳出視窗內容 Changepassword -->
+        <div class="modal fade" id="changepassword" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="accountModalLabel">變更密碼</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <p>請輸入原本的密碼</p>
+                                <input type="password" class="ch_password form-control" id="floatingPassword1">
+                                <i id="checkEye1" class="fas fa-eye"></i>
+                            </div>                                    
+                            <div class="form-group">
+                                <p>請輸入要修改的密碼</p>
+                                <input type="password" class="ch_password form-control" id="floatingPassword2">
+                                <i id="checkEye2" class="fas fa-eye"></i>
+                            </div>                                    
+                            <div class="form-group">
+                                <p>請再次輸入要修改的密碼</p>
+                                <input type="password" class="ch_password form-control" id="floatingPassword3">
+                                <i id="checkEye3" class="fas fa-eye"></i>
+                            </div>
+                            <div class="from-group text-center">
+                                <button type="button" class="btn btn-info change_btn" data-bs-toggle="modal" data-bs-target="#changepassword" >變更密碼</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--跳出視窗內容 Report -->
+        <div class="modal fade" id="report" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="accountModalLabel">問題回報</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="reportForm" action="/report" method="post">
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message-text" name="report"></textarea>
+                            </div>
+                            <div class="from-group text-center">
+                                <button type="submit" class="btn btn-info" >回報</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script>
-             
-            function addNewElements() {
+            function madetect(){
+                var inputAD = document.getElementById("inputAD").textContent;
+                var result_law;
+                var result_advice;
+
+                let p = new Promise(function(resolve, reject){
+                    $.ajax({
+                        url: '/madetect',
+                        method: 'POST',
+                        data: {input_ad: inputAD},
+                        success: function(responce){
+                            
+                            result_law = responce.result_law;
+                            result_advice = responce.result_advice;
+                            
+                            resolve('success');
+                        },
+                        error: function(error) {
+                            // 使用 alert() 函式顯示錯誤訊息
+                            console.log('error');
+                            reject('fail')
+                        }
+
+                    });
+                });
+
+                p.then(function(result){
+                    console.log(result);
+                    addNewElements(result_law, result_advice);
+                })
+                .catch(function(error){
+                    console.log(error);
+                    alert('請求失敗，請回報相關問題');
+                })
+            }
+
+            function madetects(container){
+                var inputAD = document.getElementById("inputAD").textContent;
+                var result_law;
+                var result_advice;
+
+                let p = new Promise(function(resolve, reject){
+                    $.ajax({
+                        url: '/madetect',
+                        method: 'POST',
+                        data: {input_ad: inputAD},
+                        success: function(responce){
+                            
+                            result_law = responce.result_law;
+                            result_advice = responce.result_advice;
+                            
+                            resolve('success');
+                        },
+                        error: function(error) {
+                            // 使用 alert() 函式顯示錯誤訊息
+                            console.log('error');
+                            reject('fail')
+                        }
+
+                    });
+                });
+
+                p.then(function(result){
+                    console.log(result);
+                    addNewElementsD(container, result_law, result_advice);
+                })
+                .catch(function(error){
+                    console.log(error);
+                    alert('請求失敗，請回報相關問題');
+                })
+            }
+
+
+            function addNewElements(result_law, result_advice) {
                 var editableContent = document.querySelector('.editable-content');
                 var container = document.querySelector('.r_side .r_container');
                 var content = editableContent.innerHTML;
@@ -155,10 +372,10 @@
                 var customButton = document.querySelector('.custom-button');
                 customButton.disabled = true;
 
-                var newDivPink = createNewDiv('以下是違反法條：', 'pink-bg', false);
-                var newDivLgreen = createNewDiv('以下是修改後的廣告詞：', 'Lgreen-bg', false);
+                var newDivPink = createNewDiv('以下是違反法條：', 'pink-bg', false, result_law);
+                var newDivLgreen = createNewDiv('以下是修改後的廣告詞：', 'Lgreen-bg', false, result_advice);
                 var newDivBlackLine = createNewBlackLine();
-                var newDivDgreen = createNewDiv('請輸入廣告詞', 'Dgreen-bg', true);
+                var newDivDgreen = createNewDiv('請輸入廣告詞', 'Dgreen-bg', true, '');
 
                 container.insertAdjacentElement('afterend', newDivDgreen);
                 newDivDgreen.insertAdjacentElement('beforebegin', newDivBlackLine);
@@ -173,7 +390,7 @@
                 newButton.classList.add('custom-button');
                 newButton.innerHTML = '<img src="/static/pic/send4.png" width="24px" height="24px" alt="送出">';
                 newButton.onclick = function() {
-                    addNewElementsD(newDivDgreen);
+                    madetects(newDivDgreen);
                 };
 
                 buttonContainer.appendChild(newButton);
@@ -189,11 +406,11 @@
                 newButton.style.height = customButton.offsetHeight + 'px';
             }
 
-            function addNewElementsD(container) {
-                var newDivPink = createNewDiv('以下是違反法條：', 'pink-bg', false);
-                var newDivLgreen = createNewDiv('以下是修改後的廣告詞：', 'Lgreen-bg', false);
+            function addNewElementsD(container, result_law, result_advice) {
+                var newDivPink = createNewDiv('以下是違反法條：', 'pink-bg', false, result_law);
+                var newDivLgreen = createNewDiv('以下是修改後的廣告詞：', 'Lgreen-bg', false, result_advice);
                 var newDivBlackLine = createNewBlackLine();
-                var newDivDgreen = createNewDiv('請輸入廣告詞', 'Dgreen-bg', true);
+                var newDivDgreen = createNewDiv('請輸入廣告詞', 'Dgreen-bg', true, '');
 
                 container.insertAdjacentElement('afterend', newDivDgreen);
                 newDivDgreen.insertAdjacentElement('beforebegin', newDivBlackLine);
@@ -208,7 +425,7 @@
                 newButton.classList.add('custom-button');
                 newButton.innerHTML = '<img src="/static/pic/send4.png" width="24px" height="24px" alt="送出">';
                 newButton.onclick = function() {
-                    addNewElementsD(newDivDgreen);
+                    madetects(newDivDgreen);
                 };
 
                 buttonContainer.appendChild(newButton);
@@ -230,7 +447,7 @@
                 newEditableContentLgreen.setAttribute('contenteditable', 'false');
             }
 
-            function createNewDiv(titleText, bgColorClass, editable) {
+            function createNewDiv(titleText, bgColorClass, editable, backendresult) {
                 var newDiv = document.createElement('div');
                 newDiv.classList.add('r_container', 'new-container', bgColorClass);
 
@@ -245,40 +462,18 @@
                 newEditableContent.classList.add('editable-content');
                 newEditableContent.setAttribute('contenteditable', editable ? 'true' : 'false');
                 
-                var inputAD = document.getElementById("inputAD").textContent;
-
-                $.ajax({
-                    url: '/madetect',
-                    method: 'POST',
-                    data: {input_ad: inputAD},
-                    success: function(responce){
-                        //jsonify
-                        var result_law = responce.result_law;
-                        var result_advice = responce.result_advice;
-                        // 更新新建立的 DIV 元素的內容
-                        if (bgColorClass == 'pink-bg') {
-                            newEditableContent.innerHTML = result_law;
-                        } 
-                        else if (bgColorClass == 'Lgreen-bg') {
-                            newEditableContent.innerHTML = result_advice;
-                        }
-                    },
-                    error: function(error) {
-                        // 使用 alert() 函式顯示錯誤訊息
-                        alert('發生錯誤，無法取得資料。請回報相關問題。');
-                    }
-                });
-                
 
                 //違反法條
                 if (bgColorClass == 'pink-bg') {
-                    newEditableContent.setAttribute('id', 'violetLOW');
-                    //newEditableContent.innerHTML = result_law;
+                    // document.getElementById("violetLOW").removeAttribute("id");
+                    // newEditableContent.setAttribute('id', 'violetLOW');
+                    newEditableContent.innerHTML = backendresult;
                 }
                 //修改後廣告
                 else if (bgColorClass == 'Lgreen-bg') {
-                    newEditableContent.setAttribute('id', 'adviceAD');
-                    //newEditableContent.innerHTML = result_advice;
+                    // document.getElementById("adviceAD").removeAttribute("id");
+                    // newEditableContent.setAttribute('id', 'adviceAD');
+                    newEditableContent.innerHTML = backendresult;
                 }
                 //新輸入框
                 else {
@@ -300,6 +495,95 @@
                 newDivBlackLine.classList.add('black-line');
                 return newDivBlackLine;
             }
+
+            //睜眼閉眼
+            var checkEye = document.getElementById("checkEye1");
+            var floatingPassword =  document.getElementById("floatingPassword1");
+            checkEye.addEventListener("click", function(e){
+                if(e.target.classList.contains('fa-eye')){
+                    //換class 病患 type
+                    e.target.classList.remove('fa-eye');
+                    e.target.classList.add('fa-eye-slash');
+                    floatingPassword1.setAttribute('type','text')
+                }else{
+                    floatingPassword1.setAttribute('type','password');
+                    e.target.classList.remove('fa-eye-slash');
+                    e.target.classList.add('fa-eye')
+                }
+            }); 
+
+            var checkEye = document.getElementById("checkEye2");
+            var floatingPassword =  document.getElementById("floatingPassword2");
+            checkEye.addEventListener("click", function(e){
+                if(e.target.classList.contains('fa-eye')){
+                    //換class 病患 type
+                    e.target.classList.remove('fa-eye');
+                    e.target.classList.add('fa-eye-slash');
+                    floatingPassword2.setAttribute('type','text')
+                }else{
+                    floatingPassword2.setAttribute('type','password');
+                    e.target.classList.remove('fa-eye-slash');
+                    e.target.classList.add('fa-eye')
+                }
+            }); 
+
+            var checkEye = document.getElementById("checkEye3");
+            var floatingPassword =  document.getElementById("floatingPassword3");
+            checkEye.addEventListener("click", function(e){
+                if(e.target.classList.contains('fa-eye')){
+                    //換class 病患 type
+                    e.target.classList.remove('fa-eye');
+                    e.target.classList.add('fa-eye-slash');
+                    floatingPassword3.setAttribute('type','text')
+                }else{
+                    floatingPassword3.setAttribute('type','password');
+                    e.target.classList.remove('fa-eye-slash');
+                    e.target.classList.add('fa-eye')
+                }
+            });
+
+            // 顯示使用者email函數
+            function displayUserEmail() {
+                var userEmail = "{{ session['user_email'] }}";
+                var emailInput = document.getElementById('email');
+                emailInput.value = userEmail;
+            }
+
+            // 頁面載入時顯示使用者email
+            document.addEventListener("DOMContentLoaded", function() {
+                displayUserEmail();
+            });
+
+            //攔截表單提交事件
+            document.getElementById('reportForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // 防止表單的默認提交行為
+
+                var form = event.target;
+                var url = form.getAttribute('action');
+                var formData = new FormData(form);
+
+                // 使用fetch API進行非同步表單提交
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function (response) {
+                    // 處理後端回應
+                    if (response.ok) {
+
+                        alert('問題回報成功');
+                        // 清空回報內容
+                        document.getElementById('message-text').value = '';
+                    } else {
+                        alert('問題回報失敗，請稍後再試！');
+                    }
+                })
+                .catch(function (error) {
+                    // 處理錯誤情況
+                    alert('問題回報失敗，請稍後再試！');
+                });
+
+            });
         </script>
 
     </body>

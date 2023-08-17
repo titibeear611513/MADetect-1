@@ -13,9 +13,12 @@ app.secret_key="secret"
 # 操作 madetect 資料庫
 db = client.madetect
 
-# 設定gpt apikey參數-----待修改路徑
+# 設定gpt apikey參數
 with open('./static/doc/apikey.txt', 'r') as file:
     apikey = file.read().rstrip()
+# 暫時新增
+with open('./static/doc/醫療法補充二.txt', 'r', encoding="utf-8") as file:
+  lawadd2_text = file.read()
 
 #首頁頁面
 @app.route('/')
@@ -28,65 +31,53 @@ def home():
     if 'user_name' in session:
         return render_template('home.html')
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('login_page'))
     
 @app.route('/madetect', methods=['GET', 'POST'])
 def madetect():
-    # 設定api金鑰
-    openai.api_key = apikey
+    if 'user_name' in session:
+        # 設定api金鑰
+        openai.api_key = apikey
+        
+        # 接收前端資料
+        input_ad=request.values.get('input_ad')
+        print(input_ad)
 
-    # 接收前端資料
-    input_ad=request.values.get('input_ad')
-    print(input_ad)
-    # 連接GPT<違反法條>---------內容待改
-    result = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo",
-        messages = [
-            {"role": "system", "content": "You are a helpful Legal Consultant."},
-            #{"role": "user", "content": "Please learn about the relevant documents.\n" + lawadd2_text},
-            {"role": "user", "content": "請告訴我此廣告詞是否違法" + input_ad},
-        ]
-    )
-    # 存取GPT回應<違反法條>
-    result_law = result['choices'][0]['message']['content']
+        # 連接GPT<違反法條>
+        result_law = openai.ChatCompletion.create(
+            model = "gpt-3.5-turbo-0613",
+            messages = [
+                {"role": "system", "content": "你是一個專業的律師，並具有台灣的醫療法相關知識。"},
+                {"role": "user", "content": "請先分析相關文件：" + lawadd2_text},
+                {"role": "user", "content": "\n請用你自己的話並以繁體中文告訴我此廣告詞是否違法" + input_ad},
+            ]
+        )
+        # 存取GPT回應<違反法條>
+        resultLaw = result_law['choices'][0]['message']['content']
+        print('result_law: '+resultLaw)
+        # 連接GPT<修改廣告詞>
+        result_advice = openai.ChatCompletion.create(
+            model = 'gpt-3.5-turbo-0613',
+            messages = [
+                {"role": "system", "content": "你是一個專業的廣告詞家，具有台灣的醫療法相關知識。"},
+                {"role": "user", "content": resultLaw + "\n請參考上述語句幫我以繁體中文建議我如何修改以達到不違法的目的，請只要告訴我修改後的結果就好: " + input_ad},
+            ]
+        )
+        # 存取GPT回應<修改後廣告詞>
+        resultAdvice = result_advice['choices'][0]['message']['content']
 
-    # 連接GPT<修改後廣告詞>---------內容待改
-    result = openai.ChatCompletion.create(
-        model = 'gpt-3.5-turbo',
-        messages = [
-            {"role": "system", "content": "You are a helpful Expert in the Marketing field."},
-            #{"role": "user", "content": "Please learn about the relevant documents.\n" + lawadd2_text},
-            {"role": "user", "content": input_ad + "請根據此廣告詞並參考下列有關它的敘述幫我修改它以避免違反法條: " + result_law},
-        ]
-    )
-    # 存取GPT回應<修改後廣告詞>
-    result_advice = result['choices'][0]['message']['content']
+        print('result_advice: '+resultAdvice)
+        response = {
+            'result_advice': resultAdvice,
+            'result_law': resultLaw
+        }
 
-    '''
-    # 根據接收到的資料跟資料庫互動，操作madetect資料庫的advertisement集合
-    adcollection = db.advertisement
+
+        return jsonify(response)
     
-    # 讀取session中的user_name
-    user_id=session['user_name']
+    else:
+        return redirect(url_for('login'))
     
-    # 插入資料進資料庫
-    adcollection.insert_one({
-        'user_id': user_id,
-        'ad_asked': input_ad,
-        'result_law': result_law,
-        'result_advice': result_advice
-    })
-
-    db.getCollection('user').aggregate([
-        { "$match": {_id: ObjectID('\"'+user_id+'\"')}}
-    ])'''
-    
-    response = {
-        'result_law': result_law,
-        'result_advice': result_advice
-    }
-
-    return jsonify(response)
 
 #登入頁面
 @app.route('/login')
@@ -114,23 +105,13 @@ def login_function():
     if result is not None:
         # 登入成功
         session["user_name"] = result["user_name"]
+        # session["user_id"] = result["_id"]
         response = {'success': True}
     else:
         # 登入失敗
         response = {'success': False}
     
-    return jsonify(response)
-
-#內部主頁頁面
-@app.route('/inner_homepage')
-def inner_homepage():
-	# 確認session裡是否已有資料(在/login_function中或登入失敗就不會將資料傳入session)
-
-	if "user_name" in session:
-		return render_template("inner_homepage.html")	
-	else:
-		return redirect("/")
-		
+    return jsonify(response)		
 
 #註冊頁面
 @app.route('/signup')
@@ -242,10 +223,71 @@ def reset_function():
 	})
 	return render_template('userLogin.html')
 
+# 問題回報功能
+@app.route('/report', methods=['POST'])
+def add_report():
+    if 'user_name' in session:
+        user_name = session['user_name']
+        report_text = request.form.get('report')
+
+        # 獲取當前用戶的_id
+        user_collection = db.user
+        user = user_collection.find_one({'user_name': user_name})
+        user_id = user['_id']
+
+        # 在 report 集合中存user_name和user_id還有回報內容
+        report_collection = db.report
+        report_result = report_collection.insert_one({
+            'user_name': user_name,
+            'user_id': user_id,
+            'report_text': report_text
+        })
+
+        # 獲取插入報告後的report文檔的_id
+        report_id = report_result.inserted_id
+
+        # 同時在 user 集合中記錄該當下login的user的問題回報(report)
+        user_collection.update_one({'_id': user_id}, {'$push': {'reports': report_id}})
+
+        #完成後回主頁
+        return redirect(url_for('home'))
+
+#--------------------------------------------
+#--------------------------------------------
+#-------------以下管理員登入介面--------------
+#--------------------------------------------
+#--------------------------------------------
+
 #管理員登入頁面
 @app.route('/adminlogin')
 def adminlogin_page():
 	return render_template('adminLogin.html')
+
+# 管理員登入功能
+@app.route('/adminlogin_function', methods=['POST'])
+def adminlogin_function():
+    admin_email = request.form.get('admin_email')
+    admin_password = request.form.get('admin_password')
+
+    # 根據接受到的資料跟資料庫互動，操作 madetect 資料庫的 admin 集合
+    collection = db.admin
+
+    # 檢查帳號密碼是否正確
+    result = collection.find_one({
+        "admin_email": admin_email,
+        "admin_password": admin_password
+    })
+    
+    if result is not None:
+        # 登入成功
+        session["admin_name"] = result["admin_name"]
+        session["admin_email"] =result["admin_email"]
+        response = {'success': True}
+    else:
+        # 登入失敗
+        response = {'success': False}
+    
+    return jsonify(response)
 
 #管理員忘記密碼頁面
 @app.route('/adminforgetpsw')
@@ -257,6 +299,71 @@ def adminforgetpsw_page():
 def adminresetpsw_pages():
 	return render_template('adminReset.html')
 
+#--------------------------------------------
+#--------------------------------------------
+#---------------以下管理員主頁----------------
+#--------------------------------------------
+#--------------------------------------------
+
+# 管理員首頁
+@app.route('/adminhome')
+def admin_home():
+
+    if 'admin_name' in session:
+        return render_template('admin_home.html')
+    else:
+        return redirect('/adminlogin')
+    
+@app.route('/adminsignout')
+def adminsignout():
+    # 移除session中管理員資訊
+    del session['admin_name']
+    return redirect("/adminlogin")
+
+
+# 管理員首頁>>>總用戶數
+@app.route('/get_user_count', methods=['GET'])
+def get_user_count():
+
+    collection = db.user
+    # 計算user集合中的documents數量，即使用者總數
+    user_count = collection.count_documents({})  
+    # 將使用者總數轉換為 JSON 格式並回傳
+    return jsonify(user_count)  
+
+# 管理員首頁>>>問題回報數量
+@app.route('/get_report_count', methods=['GET'])
+def get_report_count():
+
+    collection = db.report
+    # 計算report集合中的documents數量，即問題回報總數
+    report_count = collection.count_documents({})  
+    # 將問題回報總數轉換為 JSON 格式並回傳
+    return jsonify(report_count)  
+
+# 管理員 管理管理員
+@app.route('/adminmanage')
+def admin_manage():
+    if 'admin_name' in session:
+        return render_template('admin_manage.html')
+    else:
+        return redirect('/adminlogin')
+
+# 管理員 管理會員
+@app.route('/membermanage')
+def member_manage():
+    if 'admin_name' in session:
+        return render_template('member_manage.html')
+    else:
+        return redirect('/adminlogin')
+
+# 管理員 管理一般用戶
+@app.route('/normalmanage')
+def normal_manage():
+    if 'admin_name' in session:
+        return render_template('normal_manage.html')
+    else:
+        return redirect('/adminlogin')
 #後端flask設定s
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port='5000',debug=True)
